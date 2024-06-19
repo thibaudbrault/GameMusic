@@ -1,5 +1,11 @@
 import { CLOUDFRONT_URL } from '$env/static/private';
 import {
+	createAlbum,
+	createGame,
+	createCompany,
+	updateHistory,
+} from '$lib/actions';
+import {
 	albums,
 	authors,
 	db,
@@ -77,6 +83,10 @@ export const load: PageServerLoad = async ({ params }) => {
 };
 
 export const actions: Actions = {
+	createAlbum,
+	createGame,
+	createCompany,
+	updateHistory,
 	addFavoriteMusic: async ({ request }) => {
 		const formData = await request.formData();
 		const form = await superValidate(formData, zod(favoriteMusicSchema));

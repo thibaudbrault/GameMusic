@@ -12,7 +12,17 @@ import {
 	title,
 	trackId,
 } from '$lib/store';
+import type { ScrollDir } from '$lib/types';
 import { get } from 'svelte/store';
+
+export const scrollFn = (area: HTMLElement | undefined, dir: ScrollDir) => {
+	if (!area) return;
+	if (dir === 'next') {
+		area.scrollLeft += 216;
+	} else if (dir === 'prev') {
+		area.scrollLeft -= 216;
+	}
+};
 
 export const scrollIntoView = (currentTrackId: number) => {
 	const track = document.getElementById(`track-${currentTrackId}`);

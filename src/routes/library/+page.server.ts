@@ -10,6 +10,7 @@ import { and, eq } from 'drizzle-orm';
 import { message, setError, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import type { PageServerLoad } from './$types';
+import { createAlbum, createGame, createCompany } from '$lib/actions';
 
 export const load: PageServerLoad = async (event) => {
 	const playlistForm = await superValidate(zod(playlistSchema));
@@ -21,6 +22,9 @@ export const load: PageServerLoad = async (event) => {
 };
 
 export const actions: Actions = {
+	createAlbum,
+	createGame,
+	createCompany,
 	createPlaylist: async ({ request }) => {
 		const formData = await request.formData();
 		const form = await superValidate(formData, zod(createPlaylistSchema), {

@@ -12,6 +12,7 @@ import {
 import { albumSlug, renameFileWithExtension } from '$lib/utils';
 import { deleteFile, uploadFile } from '$lib/server';
 import { CLOUDFRONT_URL } from '$env/static/private';
+import { createAlbum, createGame, createCompany } from '$lib/actions';
 
 export const load: PageServerLoad = async (event) => {
 	const { session, user } = await event.locals.safeGetSession();
@@ -37,6 +38,9 @@ export const load: PageServerLoad = async (event) => {
 };
 
 export const actions: Actions = {
+	createAlbum,
+	createGame,
+	createCompany,
 	updateAlbum: async ({ request }) => {
 		const formData = await request.formData();
 		const form = await superValidate(formData, zod(updateAlbumSchema), {

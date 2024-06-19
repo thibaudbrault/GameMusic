@@ -23,7 +23,7 @@
 			No Results
 		</p>
 	{:else if filteredAlbums.length > 0}
-		<div class="flex flex-wrap justify-evenly gap-1 md:justify-normal">
+		<div class="flex flex-wrap justify-evenly gap-1 md:justify-around">
 			{#each filteredAlbums as album}
 				<Card
 					title={album.name}
@@ -36,7 +36,7 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="flex flex-wrap justify-evenly gap-1 md:justify-normal">
+		<div class="flex flex-wrap justify-evenly gap-1 md:justify-around">
 			{#each $page.data.albums as album}
 				<Card
 					title={album.name}

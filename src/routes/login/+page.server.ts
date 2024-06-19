@@ -1,6 +1,10 @@
+import { createAlbum, createGame, createCompany } from '$lib/actions';
 import { redirect, type Actions } from '@sveltejs/kit';
 
 export const actions: Actions = {
+	createAlbum,
+	createGame,
+	createCompany,
 	login: async ({ locals: { supabase } }) => {
 		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: 'google',

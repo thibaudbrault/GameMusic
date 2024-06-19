@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { Search } from '$components';
 	import type { SelectMusic } from '$lib/db';
-	import { cover, favoritesMusics, length, musics, trackId } from '$lib/store';
+	import { favoritesMusics, length, musics, trackId } from '$lib/store';
+	import { debounce } from '$lib/utils';
 	import { Musics } from '$modules';
 	import { Separator } from 'bits-ui';
 	import { onMount } from 'svelte';
 	import Header from './Header.svelte';
-	import { Search } from '$components';
-	import { debounce } from '$lib/utils';
 
 	let query: string = '';
 	let filteredMusics = [];
@@ -28,7 +28,6 @@
 	};
 
 	onMount(() => {
-		$cover = $page.data.album.cover;
 		$trackId = 0;
 		$page.data.favoritesMusics.forEach((music: SelectMusic) => {
 			favoritesMusics.update((current) => current.add(music.id));
@@ -36,7 +35,7 @@
 	});
 </script>
 
-<div class="flex flex-col gap-4">
+<div class="space-y-4">
 	<Header />
 	<Separator.Root class="mx-auto h-px w-11/12 bg-gray-5" />
 	<Search bind:query on:input={debounce(search)} placeholder="Search title" />

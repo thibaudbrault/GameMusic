@@ -21,10 +21,4 @@ I don't have a name for this app
 
 ## Stack
 
-- SvelteKit
-- Drizzle ORM
-- Typescript
-- TailwindCSS
-- AuthJS
-- AWS S3 + Cloudfront
-- Supabase
+![My Skills](https://skillicons.dev/icons?i=svelte,ts,tailwind,drizzle,aws,supabase)

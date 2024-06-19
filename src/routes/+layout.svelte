@@ -63,7 +63,7 @@
 		</div>
 	{:else}
 		<div class="flex h-full w-full items-center justify-center">
-			<img src={$cover} alt="" class={'size-96 rounded-full'} />
+			<img src={$cover} alt="" class={'size-96 rounded-md shadow-xl'} />
 		</div>
 	{/if}
 	<audio

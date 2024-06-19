@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 	import { Button, Dropdown } from '$components';
 	import type { SelectAlbum } from '$lib/db';
-	import { favoritesAlbums, isPlaying } from '$lib/store';
+	import { favoritesAlbums } from '$lib/store';
 	import { calculateTotalDuration, formatTotalDuration } from '$lib/utils';
 	import { AddMusic, DeleteMusics } from '$modules';
 	import { Heart, MoreHorizontal } from 'lucide-svelte';
@@ -28,16 +28,14 @@
 	});
 </script>
 
-<div class="flex flex-col items-center gap-4 p-4 sm:flex-row">
-	<div
-		class="relative max-w-52 rounded-full border border-gray-5 sm:size-28 md:size-40 lg:size-52"
-	>
+<div class="flex flex-col items-center gap-16 p-4 sm:flex-row">
+	<div class="relative sm:size-28 md:size-40 lg:size-64">
 		<img
 			src={$page.data.album.cover}
 			alt={$page.data.album.name}
-			class={`h-full w-full rounded-full ${$isPlaying ? 'animate-spin-slow' : ''}`}
+			class="h-full w-full rounded-md"
 		/>
-		<div class="absolute inset-0 rounded-full bg-gray-1 opacity-15" />
+		<div class="absolute inset-0 bg-gray-2 opacity-20" />
 	</div>
 	<div class="flex flex-1 flex-col justify-end gap-4">
 		<div class="flex flex-col gap-1">

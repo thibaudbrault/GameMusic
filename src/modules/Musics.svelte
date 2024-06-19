@@ -4,6 +4,7 @@
 	import { Button, Dropdown } from '$components';
 	import {
 		authors,
+		cover,
 		favoritesMusics,
 		length,
 		musics,
@@ -13,8 +14,9 @@
 	import { AddToPlaylist, UpdateMusic } from '$modules';
 	import { Heart, MoreHorizontal } from 'lucide-svelte';
 
-	const handleClick = (index: number) => {
+	const handleClick = async (index: number) => {
 		$trackId = index;
+		$cover = $page.data.album.cover;
 		$authors = $musics[$trackId].authors;
 		scrollIntoView($trackId);
 		loadTrack();
@@ -27,17 +29,17 @@
 			} else {
 				$trackId = $length - 1;
 			}
-			scrollIntoView($trackId);
-			loadTrack();
 		} else if (event.key === 'ArrowRight') {
 			if ($trackId < $length - 1) {
 				$trackId = $trackId + 1;
 			} else {
 				$trackId = 0;
 			}
-			scrollIntoView($trackId);
-			loadTrack();
 		}
+		$cover = $page.data.album.cover;
+		$authors = $musics[$trackId].authors;
+		scrollIntoView($trackId);
+		loadTrack();
 	};
 
 	const handleFavorite = (id: string) => {
@@ -59,21 +61,52 @@
 			<div
 				class={`flex w-full cursor-pointer items-center justify-between rounded-md p-2 ${$trackId === index ? 'bg-gray-12 text-gray-1' : 'hover:bg-grayA-5'}`}
 			>
-				<button
-					id={`track-${index}`}
-					on:click={() => handleClick(index)}
-					on:keydown={handleKeyDown}
-					class="flex flex-1 flex-col items-start gap-1"
-				>
-					<p class="text-left text-xl font-bold">{music.name}</p>
-					<ul class="flex items-center gap-2">
-						{#each music.authors as authors}
-							<li class=" text-xs font-medium capitalize">
-								{authors.author.name}
-							</li>
-						{/each}
-					</ul>
-				</button>
+				{#if $page.data.user}
+					<form
+						method="post"
+						use:enhance={() => {
+							return ({ update }) => {
+								update({ reset: false });
+							};
+						}}
+						action="?/updateHistory"
+						class="h-full w-full"
+					>
+						<input value={music.id} name="musicId" hidden />
+						<input value={$page.data.profile.id} name="userId" hidden />
+						<button
+							id={`track-${index}`}
+							on:click={() => handleClick(index)}
+							on:keydown={handleKeyDown}
+							class="flex h-full w-full flex-1 flex-col items-start gap-1"
+						>
+							<p class="text-left text-xl font-bold">{music.name}</p>
+							<ul class="flex items-center gap-2">
+								{#each music.authors as authors}
+									<li class=" text-xs font-medium capitalize">
+										{authors.author.name}
+									</li>
+								{/each}
+							</ul>
+						</button>
+					</form>
+				{:else}
+					<button
+						id={`track-${index}`}
+						on:click={() => handleClick(index)}
+						on:keydown={handleKeyDown}
+						class="flex flex-1 flex-col items-start gap-1"
+					>
+						<p class="text-left text-xl font-bold">{music.name}</p>
+						<ul class="flex items-center gap-2">
+							{#each music.authors as authors}
+								<li class=" text-xs font-medium capitalize">
+									{authors.author.name}
+								</li>
+							{/each}
+						</ul>
+					</button>
+				{/if}
 				<div class="flex items-center gap-4">
 					<p class="text-sm font-medium">{format(music.duration)}</p>
 					{#if $page.data.session}

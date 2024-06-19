@@ -41,15 +41,13 @@
 </script>
 
 <Tabs.Root bind:value class="mt-4 space-y-8 md:mt-0">
-	<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+	<div class="flex flex-col gap-4">
 		<h2 class="text-3xl font-bold capitalize md:text-4xl">{value}</h2>
-		<Tabs.List
-			class="flex w-fit items-center justify-center gap-4 rounded-md bg-gray-12 px-2 py-1 text-gray-1 md:px-4 md:py-2"
-		>
+		<Tabs.List class="flex w-full gap-4 border-b border-b-gray-6">
 			{#each tabs as tab}
 				<Tabs.Trigger
 					value={tab.value}
-					class="rounded-md px-2 py-1 text-base font-semibold lowercase data-[state=active]:bg-gray-3 data-[state=active]:text-gray-12 md:text-xl"
+					class="border-b-2 border-transparent px-2 py-1 text-base font-semibold lowercase text-gray-11 data-[state=active]:border-yellow-9 data-[state=active]:text-gray-12 md:text-xl"
 					style="font-variant: small-caps;"
 				>
 					{tab.label}

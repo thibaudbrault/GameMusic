@@ -1,7 +1,8 @@
+import { createAlbum, createCompany, createGame } from '$lib/actions';
 import { authors, db, musicsToAuthors, type SelectMusic } from '$lib/db';
 import { redirect } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
-import type { PageServerLoad } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const slug = params.slug;
@@ -40,4 +41,10 @@ export const load: PageServerLoad = async ({ params }) => {
 		author,
 		musics: allMusics,
 	};
+};
+
+export const actions: Actions = {
+	createAlbum,
+	createGame,
+	createCompany,
 };

@@ -135,7 +135,7 @@
 					$isZen = !$isZen;
 				}}
 			>
-				<LoaderPinwheel class="size-5" />
+				<LoaderPinwheel class={`${$isZen ? 'text-yellow-12' : ''} size-5`} />
 			</Button>
 			<p slot="content" class="font-medium">Focus mode</p>
 		</Tooltip>

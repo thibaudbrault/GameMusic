@@ -8,9 +8,13 @@
 </script>
 
 <div
-	class="flex w-32 flex-col justify-center rounded-md p-4 transition-all duration-300 ease-in-out hover:bg-gray-4 sm:w-40 md:w-52"
+	class="flex w-32 flex-shrink-0 flex-col justify-center rounded-md p-4 transition-all duration-300 ease-in-out hover:bg-gray-4 sm:w-40 md:w-44 lg:w-52"
 >
-	<img {alt} src={cover} class="size-24 rounded-md sm:size-32 md:size-44" />
+	<img
+		{alt}
+		src={cover}
+		class="size-24 rounded-md sm:size-32 md:size-36 lg:size-44"
+	/>
 	<h3 class="truncate font-semibold">
 		{#if link}
 			<a class="text-sm hover:text-yellow-12" href={link}>{title}</a>

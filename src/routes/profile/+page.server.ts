@@ -1,21 +1,33 @@
+import { createAlbum, createCompany, createGame } from '$lib/actions';
+import { db, history, users } from '$lib/db';
+import { updateUserSchema } from '$lib/validation';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import { desc, eq } from 'drizzle-orm';
 import { superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import { updateUserSchema } from '$lib/validation';
-import { db, users } from '$lib/db';
-import { eq } from 'drizzle-orm';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
-	const { session } = await event.locals.safeGetSession();
-	if (!session) throw redirect(303, '/login');
+	const { session, user } = await event.locals.safeGetSession();
+	if (!session || !user) throw redirect(303, '/login');
 	const updateUserForm = await superValidate(zod(updateUserSchema));
+	const userHistory = await db.query.history.findMany({
+		where: eq(history.userId, user.id),
+		orderBy: desc(history.listenedAt),
+		with: {
+			music: true,
+		},
+	});
 	return {
+		history: userHistory,
 		updateUserForm,
 	};
 };
 
 export const actions: Actions = {
+	createAlbum,
+	createGame,
+	createCompany,
 	updateUser: async ({ request }) => {
 		const formData = await request.formData();
 		const form = await superValidate(formData, zod(updateUserSchema), {

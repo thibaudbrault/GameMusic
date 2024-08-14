@@ -70,7 +70,7 @@
 		"globals": "^15.1.0",
 		"lucide-svelte": "^0.427.0",
 		"music-metadata": "^10.0.0",
-		"postgres": "^3.4.3",
+		"postgres": "^3.4.4",
 		"slugify": "^1.6.6",
 		"svelte-sonner": "^0.3.27",
 		"tailwind-merge": "^2.4.0",

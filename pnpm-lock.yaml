@@ -43,7 +43,7 @@ importers:
         version: 16.4.5
       drizzle-orm:
         specifier: ^0.32.0
-        version: 0.32.0(@types/pg@8.11.2)(pg@8.11.3)(postgres@3.4.3)
+        version: 0.32.0(@types/pg@8.11.2)(pg@8.11.3)(postgres@3.4.4)
       globals:
         specifier: ^15.1.0
         version: 15.1.0
@@ -54,8 +54,8 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0
       postgres:
-        specifier: ^3.4.3
-        version: 3.4.3
+        specifier: ^3.4.4
+        version: 3.4.4
       slugify:
         specifier: ^1.6.6
         version: 1.6.6
@@ -2710,8 +2710,8 @@ packages:
   postgres-range@1.1.4:
     resolution: {integrity: sha512-i/hbxIE9803Alj/6ytL7UHQxRvZkI9O4Sy+J3HGc4F4oo/2eQAjTSNJ0bfxyse3bH0nuVesCk+3IRLaMtG3H6w==}
 
-  postgres@3.4.3:
-    resolution: {integrity: sha512-iHJn4+M9vbTdHSdDzNkC0crHq+1CUdFhx+YqCE+SqWxPjm+Zu63jq7yZborOBF64c8pc58O5uMudyL1FQcHacA==}
+  postgres@3.4.4:
+    resolution: {integrity: sha512-IbyN+9KslkqcXa8AO9fxpk97PA4pzewvpi2B3Dwy9u4zpV32QicaEdgmF3eSQUzdRk7ttDHQejNgAEr4XoeH4A==}
     engines: {node: '>=12'}
 
   prelude-ls@1.2.1:
@@ -5167,11 +5167,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.32.0(@types/pg@8.11.2)(pg@8.11.3)(postgres@3.4.3):
+  drizzle-orm@0.32.0(@types/pg@8.11.2)(pg@8.11.3)(postgres@3.4.4):
     optionalDependencies:
       '@types/pg': 8.11.2
       pg: 8.11.3
-      postgres: 3.4.3
+      postgres: 3.4.4
 
   eastasianwidth@0.2.0: {}
 
@@ -6074,7 +6074,7 @@ snapshots:
 
   postgres-range@1.1.4: {}
 
-  postgres@3.4.3: {}
+  postgres@3.4.4: {}
 
   prelude-ls@1.2.1: {}
 

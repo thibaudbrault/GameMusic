@@ -68,7 +68,7 @@
 		"dotenv": "^16.4.5",
 		"drizzle-orm": "^0.32.0",
 		"globals": "^15.1.0",
-		"lucide-svelte": "^0.427.0",
+		"lucide-svelte": "^0.452.0",
 		"music-metadata": "^10.0.0",
 		"postgres": "^3.4.3",
 		"slugify": "^1.6.6",
